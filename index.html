@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>李雅楠 — AI 产品经理 · 个人品牌站</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700;900&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Noto+Serif+SC:wght@400;500;700;900&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+:root {
+  --c-bg: #1C1C1C;
+  --c-bg-alt: #242422;
+  --c-bg-light: #F5D200;
+  --c-bg-light-alt: #F0CC00;
+  --c-fg: #F5D200;
+  --c-fg-light: #1C1C1C;
+  --c-fg-2: rgba(245,210,0,0.58);
+  --c-fg-3: rgba(245,210,0,0.32);
+  --c-fg-light-2: rgba(28,28,28,0.62);
+  --c-fg-light-3: rgba(28,28,28,0.35);
+  --border-dark: #2E2E2C;
+  --border-light: rgba(28,28,28,0.18);
+  --display: 'Noto Serif SC','Barlow',sans-serif;
+  --chrome: 'Noto Sans SC','Barlow',sans-serif;
+  --mono: 'IBM Plex Mono','Noto Sans Mono CJK SC',monospace;
+  --ease: cubic-bezier(0.16,1,0.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--c-bg);color:var(--c-fg);font-family:var(--chrome);font-weight:400;font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+.bg-grid{position:relative}
+.bg-grid::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(245,210,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(245,210,0,0.04) 1px,transparent 1px);
+  background-size:60px 60px}
+
+section{position:relative;padding:100px 5vw;overflow:hidden}
+section>*{position:relative;z-index:1}
+section.dark{background:var(--c-bg);color:var(--c-fg)}
+section.light{background:var(--c-bg-light);color:var(--c-fg-light)}
+@media(max-width:768px){section{padding:60px 5vw}}
+
+/* Chrome bar */
+.chrome{display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:1vh;margin-bottom:3.5vh;border-bottom:1px solid var(--border-dark);width:100%}
+.light .chrome{border-bottom-color:var(--border-light)}
+.chrome-label,.chrome-counter{font-family:var(--mono);font-weight:500;font-size:clamp(10px,0.72vw,13px);letter-spacing:0.06em;text-transform:uppercase}
+.light .chrome-label,.light .chrome-counter{color:var(--c-fg-light-2)}
+.dark .chrome-label,.dark .chrome-counter{color:var(--c-fg-2)}
+
+/* Cover */
+.cover{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0}
+.cover-inner{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 5vw;position:relative;z-index:1}
+.cover-name{font-family:var(--display);font-weight:900;font-size:clamp(64px,12vw,180px);line-height:0.92;color:var(--c-fg);margin:0}
+.cover-title{font-family:var(--chrome);font-weight:700;font-size:clamp(15px,1.6vw,22px);letter-spacing:0.04em;color:var(--c-fg-2);margin-top:2vh;max-width:700px}
+.cover-rule{width:80px;height:2px;background:var(--c-fg);margin:3.5vh auto 0}
+.cover-stats{display:flex;gap:64px;margin-top:5vh;flex-wrap:wrap;justify-content:center}
+.stat-card{border-top:2px solid var(--c-fg);padding:2vh 0 2vh 0;text-align:center;min-width:140px}
+.stat-value{font-family:var(--display);font-weight:900;font-size:clamp(40px,5.5vw,80px);line-height:0.92;color:var(--c-fg)}
+.stat-label{font-family:var(--chrome);font-weight:500;font-size:clamp(12px,1vw,16px);color:var(--c-fg-2);margin-top:1vh}
+.stat-note{font-family:var(--mono);font-weight:400;font-size:clamp(10px,0.72vw,12px);letter-spacing:0.06em;color:var(--c-fg-3);margin-top:0.5vh;text-transform:uppercase}
+
+/* Cover-meta footer */
+.cover-meta{border-top:1px solid rgba(245,210,0,0.25);display:grid;grid-template-columns:1fr 1fr 1fr;padding:2vh 5vw;font-family:var(--mono);font-weight:500;font-size:clamp(10px,0.72vw,12px);letter-spacing:0.06em;color:var(--c-fg-2);text-transform:uppercase;position:relative;z-index:1}
+.cover-meta-col:first-child{text-align:left}
+.cover-meta-col:nth-child(2){text-align:center}
+.cover-meta-col:last-child{text-align:right}
+
+.sec-header{margin-bottom:64px}
+.sec-headline{font-family:var(--display);font-weight:900;font-size:clamp(36px,4.8vw,72px);line-height:0.95}
+.light .sec-headline{color:var(--c-fg-light)}
+.dark .sec-headline{color:var(--c-fg)}
+.sec-rule{width:60px;height:2px;margin-top:2vh}
+.dark .sec-rule{background:var(--c-fg)}
+.light .sec-rule{background:var(--c-fg-light)}
+
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;max-width:1200px;margin:0 auto}
+.overview-card{border:1px solid var(--border-dark);padding:32px}
+.light .overview-card{border-color:var(--border-light)}
+.overview-card h3{font-family:var(--display);font-weight:700;font-size:clamp(20px,2.8vw,32px);line-height:1.15;margin-bottom:12px}
+.dark .overview-card h3{color:var(--c-fg)}
+.light .overview-card h3{color:var(--c-fg-light)}
+.overview-card p{font-family:var(--chrome);font-weight:400;font-size:clamp(14px,1.15vw,18px);line-height:1.75}
+.dark .overview-card p{color:var(--c-fg-2)}
+.light .overview-card p{color:var(--c-fg-light-2)}
+.overview-card .card-mono{display:inline-block;font-family:var(--mono);font-weight:500;font-size:clamp(10px,0.72vw,12px);letter-spacing:0.06em;text-transform:uppercase;margin-top:16px;padding:6px 14px}
+.dark .overview-card .card-mono{border:1px solid var(--c-fg-3);color:var(--c-fg-3)}
+.light .overview-card .card-mono{border:1px solid var(--c-fg-light-3);color:var(--c-fg-light-3)}
+
+.timeline{max-width:900px;margin:0 auto}
+.timeline-item{position:relative;padding:20px 0 20px 36px;border-left:2px solid var(--c-fg-3)}
+.light .timeline-item{border-left-color:var(--c-fg-light-3)}
+.timeline-item::before{content:"";position:absolute;left:-6px;top:28px;width:10px;height:10px;background:var(--c-fg)}
+.light .timeline-item::before{background:var(--c-fg-light)}
+.timeline-date{font-family:var(--mono);font-weight:500;font-size:clamp(10px,0.72vw,12px);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px}
+.dark .timeline-date{color:var(--c-fg-2)}
+.light .timeline-date{color:var(--c-fg-light-2)}
+.timeline-role{font-family:var(--display);font-weight:700;font-size:clamp(20px,2.2vw,28px);line-height:1.2}
+.timeline-company{font-family:var(--chrome);font-weight:600;font-size:clamp(13px,1vw,16px);margin:4px 0 10px}
+.dark .timeline-company{color:var(--c-fg-2)}
+.light .timeline-company{color:var(--c-fg-light-2)}
+.timeline-desc{list-style:none;padding:0}
+.timeline-desc li{font-family:var(--chrome);font-weight:400;font-size:clamp(13px,1vw,16px);line-height:1.8;margin-bottom:6px;padding-left:16px;position:relative}
+.timeline-desc li::before{content:"\2014";position:absolute;left:0}
+.dark .timeline-desc li::before{color:var(--c-fg)}
+.light .timeline-desc li::before{color:var(--c-fg-light)}
+.dark .timeline-desc li{color:var(--c-fg-2)}
+.light .timeline-desc li{color:var(--c-fg-light-2)}
+
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:28px;max-width:1200px;margin:0 auto}
+.project-card{border:1px solid var(--border-dark);padding:32px}
+.light .project-card{border-color:var(--border-light)}
+.project-card .proj-num{font-family:var(--mono);font-weight:500;font-size:clamp(10px,0.72vw,12px);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px}
+.dark .proj-num{color:var(--c-fg-3)}
+.light .proj-num{color:var(--c-fg-light-3)}
+.project-card h3{font-family:var(--display);font-weight:700;font-size:clamp(20px,2vw,28px);line-height:1.15;margin-bottom:8px}
+.project-card .proj-company{display:inline-block;font-family:var(--mono);font-weight:500;font-size:clamp(9px,0.65vw,11px);letter-spacing:0.08em;text-transform:uppercase;padding:4px 10px;margin-bottom:12px}
+.dark .proj-company{border:1px solid var(--c-fg);color:var(--c-fg)}
+.light .proj-company{border:1px solid var(--c-fg-light);color:var(--c-fg-light)}
+.project-card p{font-family:var(--chrome);font-weight:400;font-size:clamp(13px,1vw,16px);line-height:1.75}
+.dark .project-card p{color:var(--c-fg-2)}
+.light .project-card p{color:var(--c-fg-light-2)}
+
+.skills-wrap{max-width:1000px;margin:0 auto}
+.skill-group{margin-bottom:36px}
+.skill-group h3{font-family:var(--display);font-weight:700;font-size:clamp(18px,2vw,24px);line-height:1.15;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--c-fg-3)}
+.light .skill-group h3{border-bottom-color:var(--c-fg-light-3)}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px}
+.skill-tag{font-family:var(--mono);font-weight:500;font-size:clamp(10px,0.72vw,12px);letter-spacing:0.06em;text-transform:uppercase;padding:6px 16px}
+.dark .skill-tag{border:1px solid var(--c-fg-3);color:var(--c-fg-2)}
+.light .skill-tag{border:1px solid var(--c-fg-light-3);color:var(--c-fg-light-2)}
+.skill-tag.hi{border-color:var(--c-fg);color:var(--c-fg)}
+.light .skill-tag.hi{border-color:var(--c-fg-light);color:var(--c-fg-light)}
+
+.edu-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;max-width:1000px;margin:0 auto}
+.edu-card{border:1px solid var(--border-dark);padding:32px;text-align:center}
+.light .edu-card{border-color:var(--border-light)}
+.edu-card h3{font-family:var(--display);font-weight:700;font-size:clamp(18px,2vw,24px);line-height:1.15;margin-bottom:4px}
+.edu-card .edu-school{font-family:var(--mono);font-weight:500;font-size:clamp(10px,0.72vw,12px);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:12px}
+.dark .edu-school{color:var(--c-fg-2)}
+.light .edu-school{color:var(--c-fg-light-2)}
+.edu-card p{font-family:var(--chrome);font-weight:400;font-size:clamp(13px,1vw,16px);line-height:1.75}
+.dark .edu-card p{color:var(--c-fg-2)}
+.light .edu-card p{color:var(--c-fg-light-2)}
+
+.footer{background:var(--c-bg-alt);text-align:center;padding:100px 5vw;position:relative}
+.footer-name{font-family:var(--display);font-weight:900;font-size:clamp(40px,7.5vw,100px);line-height:0.92;color:var(--c-fg);margin-bottom:2vh}
+.footer-rule{width:60px;height:2px;background:var(--c-fg);margin:3.5vh auto}
+.footer-sub{font-family:var(--chrome);font-weight:400;font-size:clamp(14px,1.15vw,18px);color:var(--c-fg-2);max-width:500px;margin:0 auto;line-height:1.75}
+.footer-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:3.5vh 0}
+.footer-links a{font-family:var(--mono);font-weight:500;font-size:clamp(10px,0.72vw,12px);letter-spacing:0.06em;text-transform:uppercase;color:var(--c-fg);text-decoration:none;padding:8px 18px;border:1px solid var(--c-fg-3)}
+.footer-links a:hover{background:var(--c-fg);color:var(--c-bg);border-color:var(--c-fg)}
+.footer-copy{font-family:var(--mono);font-weight:400;font-size:clamp(9px,0.65vw,11px);letter-spacing:0.06em;color:var(--c-fg-3);margin-top:32px}
+
+/* Animations */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.5s var(--ease),transform 0.5s var(--ease)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-scale{opacity:0;transform:scale(0.94);transition:opacity 0.5s var(--ease),transform 0.5s var(--ease)}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity 0.5s var(--ease),transform 0.5s var(--ease)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity 0.5s var(--ease),transform 0.5s var(--ease)}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.reveal-blur{opacity:0;filter:blur(6px);transition:opacity 0.5s var(--ease),filter 0.5s var(--ease)}
+.reveal-blur.visible{opacity:1;filter:blur(0)}
+
+.delay-1{transition-delay:0.08s}.delay-2{transition-delay:0.16s}.delay-3{transition-delay:0.24s}.delay-4{transition-delay:0.32s}.delay-5{transition-delay:0.4s}
+
+@media(prefers-reduced-motion:reduce){
+  .reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-blur{opacity:1;transform:none;filter:none;transition:none}
+}
+
+/* Nav dots */
+.nav-dots{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:10px}
+.nav-dots a{width:8px;height:8px;border-radius:50%;background:var(--c-fg);opacity:0.25;transition:opacity 0.3s;cursor:pointer;display:block}
+.nav-dots a.active{opacity:0.9}
+@media(max-width:768px){.nav-dots{display:none}}
+
+/* Glitch effect on hero name */
+@keyframes glitch-shift{
+  0%,100%{transform:translate(0)}
+  20%{transform:translate(-2px,1px)}
+  40%{transform:translate(2px,-1px)}
+  60%{transform:translate(-1px,-1px)}
+  80%{transform:translate(1px,1px)}
+}
+.cover-name{animation:glitch-shift 5s infinite;animation-play-state:paused}
+.cover-name:hover{animation-play-state:running}
+</style>
+</head>
+<body>
+<nav class="nav-dots" id="navDots"></nav>
+
+<section class="cover dark bg-grid" id="home">
+  <div class="chrome reveal" style="padding:2vh 5vw 1vh;margin-bottom:0;border-bottom:none">
+    <span class="chrome-label">AI &times; Product</span>
+    <span class="chrome-counter">01 / 07</span>
+  </div>
+  <div class="cover-inner">
+    <h1 class="cover-name reveal-blur delay-1">李雅楠</h1>
+    <p class="cover-title reveal delay-2">AI 产品经理 &middot; 8年产品经验 &middot; 5年AI领域</p>
+    <div class="cover-rule reveal-scale delay-3"></div>
+    <div class="cover-stats reveal delay-3">
+      <div class="stat-card"><div class="stat-value">8+</div><div class="stat-label">产品年限</div><div class="stat-note">YEARS</div></div>
+      <div class="stat-card"><div class="stat-value">8</div><div class="stat-label">团队管理</div><div class="stat-note">PEOPLE</div></div>
+      <div class="stat-card"><div class="stat-value">10+</div><div class="stat-label">AI产品0→1</div><div class="stat-note">PROJECTS</div></div>
+    </div>
+  </div>
+  <div class="cover-meta reveal delay-4">
+    <div class="cover-meta-col">AI Product Manager<br>2026</div>
+    <div class="cover-meta-col">Personal Brand</div>
+    <div class="cover-meta-col">Li Yanan</div>
+  </div>
+</section>
+
+<section class="light" id="overview">
+  <div class="chrome reveal">
+    <span class="chrome-label">Overview</span>
+    <span class="chrome-counter">02 / 07</span>
+  </div>
+  <div class="sec-header reveal">
+    <h2 class="sec-headline">专业概览</h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="overview-grid">
+    <div class="overview-card reveal delay-1">
+      <h3>技术领域</h3>
+      <p>大数据 &middot; AI &middot; 中台 &middot; 多模态人机交互</p>
+      <span class="card-mono">TECH STACK</span>
+    </div>
+    <div class="overview-card reveal delay-2">
+      <h3>业务领域</h3>
+      <p>供应链金融 &middot; 智能制造 &middot; 营销 &middot; 数据</p>
+      <span class="card-mono">DOMAIN</span>
+    </div>
+    <div class="overview-card reveal delay-3">
+      <h3>核心能力</h3>
+      <p>敏捷开发 &times; 跨部门协作 &times; AI技术业务融合</p>
+      <span class="card-mono">CORE</span>
+    </div>
+  </div>
+</section>
+
+<section class="dark bg-grid" id="experience">
+  <div class="chrome reveal">
+    <span class="chrome-label">Career</span>
+    <span class="chrome-counter">03 / 07</span>
+  </div>
+  <div class="sec-header reveal">
+    <h2 class="sec-headline">工作经历</h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-date">2025.12 — 至今</div>
+      <div class="timeline-role">创业 &middot; AI短剧自媒体</div>
+      <div class="timeline-company">AI短视频自动化 &middot; 全链路闭环</div>
+      <ul class="timeline-desc">
+        <li>AI自媒体（小红书万粉+千粉账号）：从0-1起号，覆盖AI热点识别→AI内容创作→商业盈利闭环</li>
+        <li>AI短视频自动化：开发个人IP口播/养生古风动画/拟人水果动画全自动生产线</li>
+        <li>AI线上店铺：基于AI agent搭建自动化闲鱼小站，全链路自动化</li>
+      </ul>
+    </div>
+    <div class="timeline-item reveal delay-1">
+      <div class="timeline-date">2025.09 — 2025.12</div>
+      <div class="timeline-role">高级产品经理</div>
+      <div class="timeline-company">赛力斯 / 智能测试部</div>
+      <ul class="timeline-desc">
+        <li>数据平台：主导智能整车MOL/OQC/VHR数据产品规划，打通产研-供应-销服全链路数据</li>
+        <li>AI质检助手（CV缺陷检测）：56路相机+3类模型并行检测，目标人工质检替代率80%</li>
+      </ul>
+    </div>
+    <div class="timeline-item reveal delay-2">
+      <div class="timeline-date">2022.11 — 2025.09</div>
+      <div class="timeline-role">产品主管（绩效前10%）</div>
+      <div class="timeline-company">瀚华金控 / 信息技术部</div>
+      <ul class="timeline-desc">
+        <li>AI风控决策引擎：年处理风控工单10万+笔，减少人工干预90%，坏账率降至0.5%</li>
+        <li>AI Agent工作流引擎：5-Agent协作，单笔业务耗时从3天降至2小时</li>
+        <li>AI知识库问答助手：企业级RAG架构，首轮采纳率78%，查找时间从8分钟降至30秒</li>
+      </ul>
+    </div>
+    <div class="timeline-item reveal delay-3">
+      <div class="timeline-date">2021.10 — 2022.10</div>
+      <div class="timeline-role">产品经理</div>
+      <div class="timeline-company">广域铭岛（吉利集团）/ 业务中台部</div>
+      <ul class="timeline-desc">
+        <li>支付中台：构建统一支付路由系统，日均处理交易10万+笔</li>
+        <li>AI销售助教：基于LLM角色扮演构建陪练AI客户，新销售1个月转化率提升22%</li>
+      </ul>
+    </div>
+    <div class="timeline-item reveal delay-4">
+      <div class="timeline-date">2019.09 — 2021.09</div>
+      <div class="timeline-role">产品经理</div>
+      <div class="timeline-company">顺网（杭州）/ 大数据中心</div>
+      <ul class="timeline-desc">
+        <li>AI智能助手：从0到1建设网吧AI多模态助手，客户好评率93%</li>
+        <li>AI用户留存预测：LSTM+XGBoost构建序列预测模型，干预组30天留存率LIFT 14%</li>
+        <li>AI数据洞察助手（Text-to-SQL）：自然语言查询占比62%，单次查询等待从2天降至5分钟</li>
+      </ul>
+    </div>
+    <div class="timeline-item reveal delay-5">
+      <div class="timeline-date">2016.11 — 2019.07</div>
+      <div class="timeline-role">产品经理</div>
+      <div class="timeline-company">搜狐（北京）/ 大数据中心</div>
+      <ul class="timeline-desc">
+        <li>数据管理平台：构建覆盖采集→清洗→治理→特征工程全生命周期大数据平台，开发成本降低60%+</li>
+        <li>特征标签平台：构建用户画像标签工厂，抽象1000+实时特征标签，点击率提升18%</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="projects">
+  <div class="chrome reveal">
+    <span class="chrome-label">Projects</span>
+    <span class="chrome-counter">04 / 07</span>
+  </div>
+  <div class="sec-header reveal">
+    <h2 class="sec-headline">重点项目</h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal delay-1">
+      <div class="proj-num">01 — 顺网</div>
+      <h3>AI智能助手</h3>
+      <span class="proj-company">SHUNWANG</span>
+      <p>ASR+NLP+多模态决策系统，V2.0升级为Agent架构。客户好评率93%，零级触达端到端延时&lt;2秒，NPS从32提升至68。</p>
+    </div>
+    <div class="project-card reveal delay-2">
+      <div class="proj-num">02 — 瀚华金控</div>
+      <h3>AI风控决策引擎</h3>
+      <span class="proj-company">HANHUA</span>
+      <p>XGBoost+NLP+知识图谱融合，坏账率从2.8%降至0.5%，新欺诈模式召回率78%。</p>
+    </div>
+    <div class="project-card reveal delay-3">
+      <div class="proj-num">03 — 瀚华金控</div>
+      <h3>AI Agent工作流引擎</h3>
+      <span class="proj-company">HANHUA</span>
+      <p>5-Agent协作架构，全流程自动化贷前/贷中/贷后，业务耗时从3天降至2小时。</p>
+    </div>
+    <div class="project-card reveal delay-4">
+      <div class="proj-num">04 — 赛力斯</div>
+      <h3>AI质检助手</h3>
+      <span class="proj-company">SERES</span>
+      <p>CV缺陷检测，56路相机+3类模型并行，目标人工质检替代率80%，漏检率&lt;0.3%。</p>
+    </div>
+    <div class="project-card reveal delay-1">
+      <div class="proj-num">05 — 瀚华金控</div>
+      <h3>RAG知识库助手</h3>
+      <span class="proj-company">HANHUA</span>
+      <p>企业级RAG架构，首轮采纳率78%，查找时间从8分钟降至30秒，客服重复问答减少60%。</p>
+    </div>
+    <div class="project-card reveal delay-2">
+      <div class="proj-num">06 — 顺网</div>
+      <h3>Text-to-SQL</h3>
+      <span class="proj-company">SHUNWANG</span>
+      <p>三层架构，自然语言查询占62%，SQL首次可用率87%，查询等待从2天降至5分钟。</p>
+    </div>
+    <div class="project-card reveal delay-3">
+      <div class="proj-num">07 — 广域铭岛</div>
+      <h3>AI销售助教</h3>
+      <span class="proj-company">GEELY</span>
+      <p>LLM角色扮演，7种客户画像+对话难度递进，新销售1个月转化率提升22%。</p>
+    </div>
+<div class="project-card reveal delay-5">
+      <div class="proj-num">08 — 创业</div>
+      <h3>AI短视频自动化</h3>
+      <span class="proj-company">STARTUP</span>
+      <p>三类视频AI工作流，创意到成片全链路自动化，单条视频制作从4小时压缩至20分钟。</p>
+    </div>
+  </div>
+</section>
+
+<section class="dark bg-grid" id="skills">
+  <div class="chrome reveal">
+    <span class="chrome-label">Skills</span>
+    <span class="chrome-counter">05 / 07</span>
+  </div>
+  <div class="sec-header reveal">
+    <h2 class="sec-headline">专业技能</h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="skills-wrap">
+    <div class="skill-group reveal">
+      <h3>AI 知识</h3>
+      <div class="skill-tags">
+        <span class="skill-tag hi">LLM</span><span class="skill-tag hi">RAG</span><span class="skill-tag">NLP</span><span class="skill-tag">多模态</span><span class="skill-tag hi">Agent</span><span class="skill-tag">知识图谱</span>
+      </div>
+    </div>
+    <div class="skill-group reveal delay-1">
+      <h3>产品设计</h3>
+      <div class="skill-tags">
+        <span class="skill-tag hi">CodeX</span><span class="skill-tag hi">ClaudeCode</span><span class="skill-tag">Axure</span><span class="skill-tag">Figma</span><span class="skill-tag">飞书</span><span class="skill-tag">XMind</span><span class="skill-tag">JIRA</span>
+      </div>
+    </div>
+    <div class="skill-group reveal delay-2">
+      <h3>数据分析</h3>
+      <div class="skill-tags">
+        <span class="skill-tag hi">SQL</span><span class="skill-tag hi">Python</span><span class="skill-tag">BI</span><span class="skill-tag hi">A/B Test</span><span class="skill-tag">用户画像</span><span class="skill-tag">指标体系</span>
+      </div>
+    </div>
+    <div class="skill-group reveal delay-3">
+      <h3>领域知识</h3>
+      <div class="skill-tags">
+        <span class="skill-tag hi">金融</span><span class="skill-tag hi">汽车</span><span class="skill-tag">供应链</span><span class="skill-tag">营销</span><span class="skill-tag">数据</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="education">
+  <div class="chrome reveal">
+    <span class="chrome-label">Education</span>
+    <span class="chrome-counter">06 / 07</span>
+  </div>
+  <div class="sec-header reveal">
+    <h2 class="sec-headline">教育与荣誉</h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="edu-row">
+    <div class="edu-card reveal delay-1">
+      <h3>管理学学士</h3>
+      <div class="edu-school">中国青年政治学院 &middot; 财务管理</div>
+      <p>2013—2017 &middot; 一本提前批录取</p>
+    </div>
+    <div class="edu-card reveal delay-2">
+      <h3>奖学金 &times; 2</h3>
+      <div class="edu-school">校级二等奖学金</div>
+      <p>突出贡献奖学金（国家级比赛获奖）</p>
+    </div>
+    <div class="edu-card reveal delay-3">
+      <h3>全国三等奖</h3>
+      <div class="edu-school">大智慧杯操盘赛</div>
+      <p>全国前10% &middot; 校歌赛十佳歌手</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="contact">
+  <h2 class="footer-name reveal-blur">李雅楠</h2>
+  <div class="footer-rule reveal-scale delay-1"></div>
+  <p class="footer-sub reveal delay-2">AI产品经理 &middot; 技术与业务的桥梁 &middot; 持续探索AI边界</p>
+  <div class="footer-links reveal delay-3">
+    <a href="https://github.com/lynytt" target="_blank">GitHub</a>
+  </div>
+  <p class="footer-copy reveal delay-4">&copy; 2026 Li Yanan. All rights reserved.<br>篮球 &middot; 音乐 &middot; 游戏 &middot; 网球 &middot; 旅行 &middot; 看书 &middot; 滑雪 &middot; 冲浪</p>
+</footer>
+
+<script>
+(() => {
+  // IntersectionObserver for scroll reveals
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-blur');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+    // Immediately show elements already in viewport
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        revealEls.forEach(el => {
+          const r = el.getBoundingClientRect();
+          if (r.top < window.innerHeight - 100 && r.bottom > 0) el.classList.add('visible');
+        });
+      });
+    });
+  } else {
+    // Fallback: show all immediately
+    revealEls.forEach(el => el.classList.add('visible'));
+  }
+
+  var sections = document.querySelectorAll('section, footer')
+  var nav = document.getElementById('navDots')
+  sections.forEach(function(s,i){
+    var a = document.createElement('a')
+    a.href = '#' + (s.id || 'home')
+    nav.appendChild(a)
+  })
+  var dots = nav.querySelectorAll('a')
+  var navObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        dots.forEach(function(d){d.classList.remove('active')})
+        var idx = Array.from(sections).indexOf(e.target)
+        if(idx>=0 && dots[idx]) dots[idx].classList.add('active')
+      }
+    })
+  },{threshold:0.4})
+  sections.forEach(function(s){navObs.observe(s)})
+})()
+</script>
+<noscript><style>.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-blur{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}</style></noscript>
+</body>
+</html>
